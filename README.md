@@ -4,4 +4,4 @@ A personal regulatory intelligence dashboard tracking U.S. trade policy, sanctio
 
 ### 🚀 Explore the Live Dashboard
 
-[Launch Mission Control 👽🪐](https://gkarnelle.github.io/Trade-Intelligence-Command-Center/)
+[Launch Trade Intelligence Command Center 👽🪐](https://gkarnelle.github.io/Trade-Intelligence-Command-Center/)
