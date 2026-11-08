@@ -27,6 +27,7 @@
       margin: 0;
       min-height: 100vh;
       font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--text);
       background:
         radial-gradient(
           ellipse at 90% 0%,
@@ -39,7 +40,6 @@
           transparent 40%
         ),
         var(--bg);
-      color: var(--text);
     }
 
     a {
@@ -47,13 +47,22 @@
     }
 
     a:hover {
-      color: #ffffff;
+      color: white;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
     }
 
     header {
-      background: rgba(8, 13, 23, 0.85);
-      border-bottom: 1px solid var(--border);
       padding: 42px 7%;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8, 13, 23, 0.85);
     }
 
     .header-content {
@@ -64,30 +73,29 @@
     }
 
     .avatar {
-      width: 110px;
-      height: 110px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       border: 3px solid var(--cyan);
       object-fit: cover;
       box-shadow:
-        0 0 20px rgba(84, 216, 255, 0.45),
-        0 0 35px rgba(177, 140, 255, 0.25);
+        0 0 20px rgba(84, 216, 255, 0.4),
+        0 0 35px rgba(177, 140, 255, 0.2);
     }
 
     .eyebrow {
       color: var(--purple);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: bold;
       letter-spacing: 2px;
     }
 
-    header h1 {
-      margin: 10px 0 12px;
+    h1 {
+      margin: 10px 0;
       font-size: clamp(28px, 4vw, 44px);
-      letter-spacing: -0.5px;
       background: linear-gradient(
         90deg,
-        #ffffff,
+        white,
         var(--cyan),
         var(--purple)
       );
@@ -96,130 +104,148 @@
       color: transparent;
     }
 
-    header p {
-      margin: 0;
+    .subtitle,
+    .muted {
       color: var(--muted);
       line-height: 1.6;
     }
 
-    .header-subtitle {
-      margin-top: 20px;
-      color: var(--muted);
+    .subtitle {
+      margin: 0;
     }
 
     main {
       max-width: 1250px;
       margin: auto;
-      padding: 36px 24px;
+      padding: 32px 24px 60px;
     }
 
-    .intro {
+    .toolbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       flex-wrap: wrap;
-      gap: 18px;
-      margin-bottom: 28px;
+      gap: 16px;
+      margin-bottom: 24px;
     }
 
-    .intro h2 {
-      margin-bottom: 8px;
+    .toolbar h2 {
+      margin: 0 0 8px;
     }
 
-    .intro p,
-    .panel p,
-    .card p {
-      color: var(--muted);
-      line-height: 1.65;
+    .toolbar p {
+      margin: 0;
     }
 
     .button {
-      display: inline-block;
-      padding: 13px 20px;
+      padding: 12px 18px;
+      border: 1px solid #7189e5;
+      border-radius: 10px;
       background: linear-gradient(
         120deg,
         #1378c8,
         #7651c9
       );
-      color: #ffffff;
-      border: 1px solid #7189e5;
-      border-radius: 10px;
-      text-decoration: none;
+      color: white;
       font-weight: bold;
-      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .button:hover {
-      color: #ffffff;
-      transform: translateY(-2px);
-      box-shadow: 0 0 22px rgba(84, 216, 255, 0.25);
+    .button:disabled {
+      opacity: 0.55;
+      cursor: wait;
     }
 
-    .cards {
+    .stats {
       display: grid;
       grid-template-columns: repeat(
         auto-fit,
-        minmax(220px, 1fr)
+        minmax(190px, 1fr)
       );
-      gap: 18px;
+      gap: 16px;
+      margin-bottom: 28px;
     }
 
-    .card,
+    .stat,
     .panel {
-      background: rgba(17, 26, 43, 0.94);
+      padding: 24px;
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 24px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      background: rgba(17, 26, 43, 0.94);
     }
 
-    .card {
+    .stat {
       border-top: 2px solid var(--cyan);
     }
 
-    .card:nth-child(even) {
+    .stat:nth-child(even) {
       border-top-color: var(--purple);
     }
 
-    .card h3 {
-      margin-top: 0;
+    .stat-label {
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
+      font-weight: bold;
       letter-spacing: 1px;
     }
 
-    .card strong {
+    .stat-value {
       display: block;
-      font-size: 32px;
+      margin: 14px 0 8px;
       color: var(--cyan);
+      font-size: 28px;
+      font-weight: bold;
     }
 
-    .section {
-      margin-top: 32px;
+    .stat-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
     }
 
     .panel h2 {
-      margin-top: 0;
+      margin: 0 0 10px;
     }
 
-    .columns {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-      gap: 20px;
+    .feed-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 24px 0;
     }
 
-    .tag {
-      display: inline-block;
-      padding: 6px 11px;
-      border-radius: 20px;
-      background: rgba(84, 216, 255, 0.12);
+    .filter {
+      padding: 10px 14px;
+      border: 1px solid #45456d;
+      border-radius: 9px;
+      background: rgba(177, 140, 255, 0.1);
+      color: #d8c8ff;
+    }
+
+    .filter:hover,
+    .filter.active {
+      border-color: var(--cyan);
+      background: rgba(84, 216, 255, 0.15);
       color: var(--cyan);
-      border: 1px solid rgba(84, 216, 255, 0.3);
-      font-size: 12px;
+    }
+
+    .search {
+      display: block;
+      width: 100%;
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      background: #080f1d;
+      color: white;
+    }
+
+    .search:focus {
+      border-color: var(--cyan);
     }
 
     .feed-item {
-      padding: 18px 0;
+      padding: 24px 0;
       border-bottom: 1px solid var(--border);
     }
 
@@ -229,53 +255,70 @@
 
     .feed-item h3 {
       margin: 12px 0;
-      font-size: 17px;
+      font-size: 19px;
       line-height: 1.5;
       overflow-wrap: anywhere;
     }
 
     .feed-item p {
-      margin-bottom: 0;
-      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
     }
 
-    .topics {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .topic {
-      padding: 10px 14px;
-      border: 1px solid #3c416a;
-      border-radius: 8px;
-      background: rgba(177, 140, 255, 0.10);
-      color: #d8c8ff;
-    }
-
-    .source-note {
-      margin-top: 22px;
+    .tag {
+      display: inline-block;
+      padding: 6px 11px;
+      border: 1px solid rgba(84, 216, 255, 0.3);
+      border-radius: 20px;
+      background: rgba(84, 216, 255, 0.1);
+      color: var(--cyan);
       font-size: 12px;
     }
 
-    .feed-status {
+    .meta {
+      font-size: 13px;
+    }
+
+    .status {
+      padding: 24px 0;
       color: var(--muted);
     }
 
+    .source-note {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .source-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 12px;
+    }
+
     footer {
-      padding: 30px;
+      padding: 24px;
       text-align: center;
       color: var(--muted);
       font-size: 13px;
     }
 
     @media (max-width: 760px) {
-      .columns {
-        grid-template-columns: 1fr;
-      }
-
       header {
         padding: 30px 24px;
+      }
+
+      main {
+        padding: 24px 16px;
+      }
+
+      .stat,
+      .panel {
+        padding: 18px;
       }
     }
   </style>
@@ -292,249 +335,445 @@
         class="avatar"
         src="https://github.com/gkarnelle.png"
         alt="Karnelle's GitHub avatar"
-        width="110"
-        height="110"
+        width="100"
+        height="100"
       >
 
       <div>
         <div class="eyebrow">
-          👽 MISSION CONTROL
+          👽 MISSION CONTROL / TRADE INTELLIGENCE
         </div>
 
         <h1>
           Trade Intelligence Command Center 🛸
         </h1>
 
-        <p>
-          Exploring global trade, one regulation at a time. 🪐✨
+        <p class="subtitle">
+          Your radar for U.S. trade policy,
+          customs regulations, sanctions,
+          and export-control developments.
         </p>
       </div>
 
     </div>
-
-    <p class="header-subtitle">
-      Regulatory Intelligence • Trade Compliance •
-      Professional Development
-    </p>
   </header>
 
-  <!-- MAIN DASHBOARD -->
+  <!-- DASHBOARD -->
 
   <main>
 
-    <div class="intro">
+    <div class="toolbar">
       <div>
-        <h2>🚀 Mission Control</h2>
-        <p>
-          Monitor regulatory developments.
-          Understand their impact.
-          Stay informed.
+        <h2>📡 Regulatory Intelligence Radar</h2>
+        <p class="muted">
+          Recent official publications and regulatory developments
         </p>
       </div>
 
-      <a
+      <button
+        id="refresh-button"
         class="button"
-        href="https://www.federalregister.gov/"
-        target="_blank"
-        rel="noopener noreferrer"
+        type="button"
       >
-        Explore Official Updates
-      </a>
+        ↻ Refresh Feed
+      </button>
     </div>
 
-    <!-- DASHBOARD METRICS -->
+    <!-- DASHBOARD OVERVIEW -->
 
-    <div class="cards">
+    <div class="stats">
 
-      <div class="card">
-        <h3>REGULATORY UPDATES</h3>
-        <strong id="regulatory-count">—</strong>
-        <p>Recent Federal Register matches</p>
+      <div class="stat">
+        <div class="stat-label">DOCUMENTS DISPLAYED</div>
+        <strong class="stat-value" id="document-count">—</strong>
+        <p class="stat-note">Current Federal Register results</p>
       </div>
 
-      <div class="card">
-        <h3>COMPLIANCE TOPICS</h3>
-        <strong>6</strong>
-        <p>Areas of regulatory focus</p>
+      <div class="stat">
+        <div class="stat-label">DATA SOURCE</div>
+        <strong class="stat-value">Federal Register</strong>
+        <p class="stat-note">Official U.S. government publications</p>
       </div>
 
-      <div class="card">
-        <h3>RESEARCH LIBRARY</h3>
-        <strong>—</strong>
-        <p>Research tracking planned</p>
-      </div>
-
-      <div class="card">
-        <h3>LINKEDIN GOAL</h3>
-        <strong>1 / month</strong>
-        <p>Professional insights and trade developments</p>
-      </div>
-
-    </div>
-
-    <!-- REGULATORY RADAR AND COMPLIANCE ORBIT -->
-
-    <div class="columns section">
-
-      <section class="panel">
-        <h2>📡 Regulatory Radar</h2>
-
-        <div id="regulatory-feed" aria-live="polite">
-          <p class="feed-status">
-            📡 Scanning the regulatory universe...
-          </p>
-        </div>
-
-        <p class="source-note">
-          Source: Federal Register.
-          Keyword-matched published documents for research
-          and human review. Results do not establish
-          regulatory applicability or compliance impact.
+      <div class="stat">
+        <div class="stat-label">TOPIC COVERAGE</div>
+        <strong class="stat-value">4 Areas</strong>
+        <p class="stat-note">
+          Tariffs, customs, sanctions, export controls
         </p>
-      </section>
+      </div>
 
-      <aside class="panel">
-        <h2>🪐 Compliance Orbit</h2>
-
-        <div class="topics">
-          <span class="topic">Tariffs &amp; Trade Remedies</span>
-          <span class="topic">Sanctions</span>
-          <span class="topic">Export Controls</span>
-          <span class="topic">AD/CVD</span>
-          <span class="topic">Customs &amp; HTS</span>
-          <span class="topic">Origin &amp; Valuation</span>
-        </div>
-      </aside>
+      <div class="stat">
+        <div class="stat-label">FEED STATUS</div>
+        <strong class="stat-value" id="feed-status">Connecting</strong>
+        <p class="stat-note" id="last-checked">
+          Awaiting first request
+        </p>
+      </div>
 
     </div>
 
-    <!-- MISSION LOG -->
+    <!-- NEWS FEED -->
 
-    <section class="panel section">
-      <h2>🌌 Mission Log &amp; LinkedIn</h2>
+    <section class="panel">
 
-      <p>
-        A dedicated workspace for tracking trade developments,
-        documenting regulatory insights, and maintaining a goal
-        of publishing at least one LinkedIn post each month.
+      <h2>🪐 Latest Trade Developments</h2>
+
+      <p class="muted">
+        Search recent Federal Register publications
+        by regulatory topic.
       </p>
 
-      <p>
-        <strong>My approach:</strong>
-        Automate the repeatable.
-        Escalate the uncertain.
-        Document the decision.
-      </p>
+      <div class="feed-controls" aria-label="Trade topic filters">
+
+        <button
+          class="filter active"
+          type="button"
+          data-topic="all"
+          aria-pressed="true"
+        >
+          All Updates
+        </button>
+
+        <button
+          class="filter"
+          type="button"
+          data-topic="tariffs"
+          aria-pressed="false"
+        >
+          Tariffs &amp; Trade Remedies
+        </button>
+
+        <button
+          class="filter"
+          type="button"
+          data-topic="customs"
+          aria-pressed="false"
+        >
+          Customs &amp; Imports
+        </button>
+
+        <button
+          class="filter"
+          type="button"
+          data-topic="sanctions"
+          aria-pressed="false"
+        >
+          Sanctions
+        </button>
+
+        <button
+          class="filter"
+          type="button"
+          data-topic="exports"
+          aria-pressed="false"
+        >
+          Export Controls
+        </button>
+
+      </div>
+
+      <label for="headline-search" class="muted">
+        Search displayed headlines
+      </label>
+
+      <input
+        id="headline-search"
+        class="search"
+        type="search"
+        placeholder="Search titles, agencies, or summaries..."
+      >
+
+      <div id="regulatory-feed" aria-live="polite">
+        <p class="status">
+          📡 Scanning the regulatory universe...
+        </p>
+      </div>
+
+      <div class="source-note">
+        Federal Register API.
+        Documents are selected through keyword searches.
+        Inclusion does not establish regulatory applicability,
+        legal effect, or a compliance obligation.
+        Verify requirements against official publications
+        and effective dates.
+
+        <div class="source-links">
+          <a
+            href="https://www.federalregister.gov/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Federal Register
+          </a>
+
+          <a
+            href="https://www.cbp.gov/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            CBP
+          </a>
+
+          <a
+            href="https://www.bis.gov/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            BIS
+          </a>
+
+          <a
+            href="https://ofac.treasury.gov/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            OFAC
+          </a>
+
+          <a
+            href="https://ustr.gov/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            USTR
+          </a>
+        </div>
+
+        <p>
+          CBP, BIS, OFAC, and USTR links are reference resources,
+          not additional live feeds.
+        </p>
+      </div>
+
     </section>
 
   </main>
 
-  <!-- FOOTER -->
-
   <footer>
-    Trade Intelligence Command Center |
-    Personal regulatory research and professional development
+    👽 Trade Intelligence Command Center |
+    Official sources • Regulatory awareness • Human review
   </footer>
 
-  <!-- FEDERAL REGISTER LIVE FEED -->
+  <!-- LIVE FEDERAL REGISTER CONNECTION -->
 
   <script>
-    async function loadRegulatoryRadar() {
-      const feed = document.getElementById("regulatory-feed");
-      const counter = document.getElementById("regulatory-count");
+    const API_BASE =
+      "https://www.federalregister.gov/api/v1/documents.json";
 
-      const params = new URLSearchParams({
-        "conditions[term]":
-          'customs OR tariff OR "export controls" OR sanctions',
-        "order": "newest",
-        "per_page": "5"
+    const TOPICS = {
+      all:
+        'customs OR tariff OR sanctions OR "export controls"',
+      tariffs:
+        'tariff OR "trade remedies" OR "antidumping"',
+      customs:
+        'customs OR "import duties" OR "country of origin"',
+      sanctions:
+        'sanctions OR "blocked persons"',
+      exports:
+        '"export controls" OR "Export Administration Regulations"'
+    };
+
+    const feed = document.getElementById("regulatory-feed");
+    const count = document.getElementById("document-count");
+    const status = document.getElementById("feed-status");
+    const checked = document.getElementById("last-checked");
+    const refresh = document.getElementById("refresh-button");
+    const search = document.getElementById("headline-search");
+    const filters = document.querySelectorAll(".filter");
+
+    let activeTopic = "all";
+    let currentDocuments = [];
+    let requestController = null;
+    let requestNumber = 0;
+
+    function setStatus(message, detail) {
+      status.textContent = message;
+      checked.textContent = detail;
+    }
+
+    function showMessage(message) {
+      feed.replaceChildren();
+
+      const paragraph = document.createElement("p");
+      paragraph.className = "status";
+      paragraph.textContent = message;
+
+      feed.appendChild(paragraph);
+    }
+
+    function renderDocuments() {
+      const query = search.value.trim().toLowerCase();
+
+      const matching = currentDocuments.filter(function(doc) {
+        const agencyNames = (doc.agencies || [])
+          .map(function(agency) {
+            return agency.name || "";
+          })
+          .join(" ");
+
+        const text = [
+          doc.title || "",
+          agencyNames,
+          doc.abstract || ""
+        ].join(" ").toLowerCase();
+
+        return text.includes(query);
       });
 
-      const url =
-        "https://www.federalregister.gov/api/v1/documents.json?" +
-        params.toString();
+      feed.replaceChildren();
+      count.textContent = matching.length;
+
+      if (matching.length === 0) {
+        showMessage("No documents match your current search.");
+        return;
+      }
+
+      matching.forEach(function(doc) {
+        const article = document.createElement("article");
+        article.className = "feed-item";
+
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = doc.type || "Federal Register";
+
+        const heading = document.createElement("h3");
+        const link = document.createElement("a");
+
+        link.textContent = doc.title || "Untitled document";
+        link.href =
+          doc.html_url || "https://www.federalregister.gov/";
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+
+        heading.appendChild(link);
+
+        const agencies = (doc.agencies || [])
+          .map(function(agency) {
+            return agency.name;
+          })
+          .filter(Boolean)
+          .join(", ");
+
+        const metadata = document.createElement("p");
+        metadata.className = "meta";
+        metadata.textContent =
+          "Published: " +
+          (doc.publication_date || "Unknown") +
+          " | Agency: " +
+          (agencies || "Not specified");
+
+        article.append(tag, heading, metadata);
+
+        if (doc.abstract) {
+          const summary = document.createElement("p");
+          summary.textContent = doc.abstract;
+          article.appendChild(summary);
+        }
+
+        feed.appendChild(article);
+      });
+    }
+
+    async function loadFeed() {
+      requestNumber += 1;
+      const thisRequest = requestNumber;
+
+      if (requestController) {
+        requestController.abort();
+      }
+
+      requestController = new AbortController();
+
+      refresh.disabled = true;
+      currentDocuments = [];
+      count.textContent = "—";
+
+      setStatus("Connecting", "Requesting official publications");
+      showMessage("📡 Scanning the regulatory universe...");
+
+      const params = new URLSearchParams({
+        "conditions[term]": TOPICS[activeTopic],
+        "order": "newest",
+        "per_page": "10"
+      });
+
+      const url = API_BASE + "?" + params.toString();
+
+      const timeout = setTimeout(function() {
+        requestController.abort();
+      }, 15000);
 
       try {
-        const response = await fetch(url);
+        const response = await fetch(url, {
+          signal: requestController.signal
+        });
 
         if (!response.ok) {
-          throw new Error(
-            "Federal Register request failed: " + response.status
-          );
+          throw new Error("HTTP " + response.status);
         }
 
         const data = await response.json();
-        const documents = data.results || [];
 
-        feed.replaceChildren();
-        counter.textContent = documents.length;
-
-        if (documents.length === 0) {
-          const empty = document.createElement("p");
-          empty.textContent = "No matching documents found.";
-          feed.appendChild(empty);
+        if (thisRequest !== requestNumber) {
           return;
         }
 
-        documents.forEach(function(doc) {
-          const item = document.createElement("div");
-          item.className = "feed-item";
+        currentDocuments = data.results || [];
 
-          const tag = document.createElement("span");
-          tag.className = "tag";
-          tag.textContent = doc.type || "Federal Register";
+        setStatus(
+          "Connected",
+          "Checked " + new Date().toLocaleString()
+        );
 
-          const title = document.createElement("h3");
-          const link = document.createElement("a");
-
-          link.textContent = doc.title || "Untitled document";
-          link.href =
-            doc.html_url || "https://www.federalregister.gov/";
-          link.target = "_blank";
-          link.rel = "noopener noreferrer";
-
-          title.appendChild(link);
-
-          const details = document.createElement("p");
-
-          const agencies = (doc.agencies || [])
-            .map(function(agency) {
-              return agency.name;
-            })
-            .filter(Boolean)
-            .join(", ");
-
-          details.textContent =
-            "Published: " +
-            (doc.publication_date || "Unknown") +
-            " | Agency: " +
-            (agencies || "Not specified");
-
-          item.append(tag, title, details);
-          feed.appendChild(item);
-        });
+        renderDocuments();
 
       } catch (error) {
-        console.error("Regulatory Radar error:", error);
+        if (thisRequest !== requestNumber) {
+          return;
+        }
 
-        feed.replaceChildren();
+        console.error("Federal Register feed:", error);
 
-        const message = document.createElement("p");
-        message.textContent =
-          "⚠️ Unable to load regulatory updates right now.";
+        setStatus("Unavailable", "Unable to retrieve documents");
+        count.textContent = "—";
 
-        const fallback = document.createElement("a");
-        fallback.href = "https://www.federalregister.gov/";
-        fallback.textContent = "Browse the Federal Register";
-        fallback.target = "_blank";
-        fallback.rel = "noopener noreferrer";
+        showMessage(
+          "⚠️ The Federal Register feed is unavailable. " +
+          "Please try refreshing."
+        );
 
-        feed.append(message, fallback);
-        counter.textContent = "—";
+      } finally {
+        clearTimeout(timeout);
+
+        if (thisRequest === requestNumber) {
+          refresh.disabled = false;
+        }
       }
     }
 
-    loadRegulatoryRadar();
+    filters.forEach(function(button) {
+      button.addEventListener("click", function() {
+        activeTopic = button.dataset.topic;
+
+        filters.forEach(function(other) {
+          const selected = other === button;
+          other.classList.toggle("active", selected);
+          other.setAttribute(
+            "aria-pressed",
+            String(selected)
+          );
+        });
+
+        search.value = "";
+        loadFeed();
+      });
+    });
+
+    search.addEventListener("input", renderDocuments);
+    refresh.addEventListener("click", loadFeed);
+
+    loadFeed();
   </script>
 
 </body>
