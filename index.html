@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trade Intelligence Command Center</title>
+  
+<style>
+  :root {
+    --bg: #080d17;
+    --panel: #111a2b;
+    --panel-hover: #17233a;
+    --cyan: #54d8ff;
+    --purple: #b18cff;
+    --text: #f2f6ff;
+    --muted: #a9b9d0;
+    --border: #2b3c58;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+      radial-gradient(ellipse at 90% 0%,
+        rgba(109, 63, 190, .22), transparent 45%),
+      radial-gradient(ellipse at 0% 20%,
+        rgba(25, 157, 220, .12), transparent 40%),
+      var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  header {
+    background: rgba(8, 13, 23, .85);
+    border-bottom: 1px solid var(--border);
+    padding: 42px 7%;
+  }
+
+  header h1 {
+    margin: 0 0 12px;
+    font-size: clamp(28px, 4vw, 44px);
+    letter-spacing: -.5px;
+    background: linear-gradient(90deg,
+      #ffffff, var(--cyan), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  header p {
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  main {
+    max-width: 1250px;
+    margin: auto;
+    padding: 36px 24px;
+  }
+
+  .intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .intro h2 { color: var(--text); }
+
+  .intro p, .panel p, .card p {
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .button {
+    display: inline-block;
+    background: linear-gradient(120deg,
+      #1378c8, #7651c9);
+    color: white;
+    padding: 13px 20px;
+    border: 1px solid #7189e5;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 22px rgba(84, 216, 255, .25);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,
+      minmax(220px, 1fr));
+    gap: 18px;
+  }
+
+  .card, .panel {
+    background: rgba(17, 26, 43, .94);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .12);
+  }
+
+  .card {
+    border-top: 2px solid var(--cyan);
+    transition: transform .2s, border-color .2s;
+  }
+
+  .card:nth-child(even) {
+    border-top-color: var(--purple);
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--cyan);
+  }
+
+  .card h3 {
+    margin-top: 0;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .card strong {
+    font-size: 32px;
+    color: var(--cyan);
+  }
+
+  .section { margin-top: 32px; }
+
+  .panel h2 {
+    margin-top: 0;
+    color: var(--text);
+  }
+
+  .tag {
+    display: inline-block;
+    background: rgba(84, 216, 255, .12);
+    color: var(--cyan);
+    border: 1px solid rgba(84, 216, 255, .3);
+    padding: 6px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  .feed-item {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .feed-item:last-child { border-bottom: none; }
+
+  .feed-item p { color: var(--muted); }
+
+  .columns {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+  }
+
+  .topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .topic {
+    padding: 10px 14px;
+    border: 1px solid #3c416a;
+    border-radius: 8px;
+    background: rgba(177, 140, 255, .10);
+    color: #d8c8ff;
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  @media (max-width: 760px) {
+    .columns { grid-template-columns: 1fr; }
+    header { padding: 30px 24px; }
+  }
+</style>
+
+</head>
+<body>
+
+
+<header>
+  <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+    <img
+      src="https://github.com/gkarnelle.png"
+      alt="Karnelle's GitHub avatar"
+      width="110"
+      height="110"
+      style="
+        border-radius:50%;
+        border:3px solid #54d8ff;
+        box-shadow:
+          0 0 20px rgba(84,216,255,.45),
+          0 0 35px rgba(177,140,255,.25);
+        object-fit:cover;
+      "
+    >
+    <div>
+      <div style="color:#b18cff;font-size:13px;
+                  letter-spacing:2px;font-weight:bold;">
+        👽 KARNELLE'S MISSION CONTROL
+      </div>
+      <h1>Trade Intelligence Command Center 🛸</h1>
+      <p>Exploring global trade, one regulation at a time. 🪐✨</p>
+    </div>
+  </div>
+
+  <p>Regulatory Intelligence • Trade Compliance • Professional Development</p>
+</header>
+
+<main>
+  <div class="intro">
+    <div>
+      <h2>My Intelligence Dashboard</h2>
+      <p>Monitor regulatory developments. Understand their impact. Stay informed.</p>
+    </div>
+    <a class="button"
+       href="https://www.federalregister.gov/"
+       target="_blank" rel="noopener noreferrer">
+       Explore Official Updates
+    </a>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h3>REGULATORY UPDATES</h3>
+      <strong>—</strong>
+      <p>Live feed coming soon</p>
+    </div>
+    <div class="card">
+      <h3>COMPLIANCE TOPICS</h3>
+      <strong>6</strong>
+      <p>Areas of regulatory focus</p>
+    </div>
+    <div class="card">
+      <h3>RESEARCH LIBRARY</h3>
+      <strong>—</strong>
+      <p>Research tracking planned</p>
+    </div>
+    <div class="card">
+      <h3>LINKEDIN GOAL</h3>
+      <strong>1 / month</strong>
+      <p>Professional insights and trade developments</p>
+    </div>
+  </div>
+
+  <div class="columns section">
+    <section class="panel">
+      <h2>Latest Regulatory Developments</h2>
+      <div class="feed-item">
+        <span class="tag">Official Sources</span>
+        <h3>Regulatory news integration is next</h3>
+        <p>
+          This section will display sourced regulatory updates,
+          publication dates, and links to official notices.
+        </p>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <h2>Compliance Watchlist</h2>
+      <div class="topics">
+        <span class="topic">Tariffs & Trade Remedies</span>
+        <span class="topic">Sanctions</span>
+        <span class="topic">Export Controls</span>
+        <span class="topic">AD/CVD</span>
+        <span class="topic">Customs & HTS</span>
+        <span class="topic">Origin & Valuation</span>
+      </div>
+    </aside>
+  </div>
+
+  <section class="panel section">
+    <h2>My Research & LinkedIn Accountability</h2>
+    <p>
+      A dedicated workspace for tracking trade developments,
+      documenting regulatory insights, and maintaining a goal
+      of publishing at least one LinkedIn post each month.
+    </p>
+    <p>
+      <strong>My approach:</strong>
+      Automate the repeatable. Escalate the uncertain.
+      Document the decision.
+    </p>
+  </section>
+</main>
+
+<footer>
+  Trade Intelligence Command Center |
+  Personal regulatory research and professional development
+</footer>
+
+</body>
+</html>
