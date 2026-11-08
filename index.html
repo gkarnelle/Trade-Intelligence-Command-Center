@@ -665,11 +665,35 @@
 
         article.append(tag, heading, metadata);
 
-        if (doc.abstract) {
-          const summary = document.createElement("p");
-          summary.textContent = doc.abstract;
-          article.appendChild(summary);
-        }
+        
+if (doc.abstract) {
+  const summary = document.createElement("p");
+
+  const plainText = doc.abstract
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const words = plainText.split(" ");
+  const maxWords = 45;
+
+  summary.textContent =
+    words.length > maxWords
+      ? words.slice(0, maxWords).join(" ") + "..."
+      : plainText;
+
+  article.appendChild(summary);
+
+  const readMore = document.createElement("a");
+  readMore.href =
+    doc.html_url || "https://www.federalregister.gov/";
+  readMore.target = "_blank";
+  readMore.rel = "noopener noreferrer";
+  readMore.textContent = "Read official notice";
+
+  article.appendChild(readMore);
+}
+
 
         feed.appendChild(article);
       });
