@@ -120,6 +120,28 @@
       padding: 32px 24px 60px;
     }
 
+
+    .development-notice {
+      margin-bottom: 24px;
+      padding: 20px 24px;
+      border: 1px solid rgba(177, 140, 255, 0.55);
+      border-left: 4px solid var(--purple);
+      border-radius: 12px;
+      background: rgba(177, 140, 255, 0.09);
+    }
+
+    .development-notice h2 {
+      margin: 0 0 8px;
+      font-size: 19px;
+      color: var(--text);
+    }
+
+    .development-notice p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
     .toolbar {
       display: flex;
       align-items: center;
@@ -361,6 +383,18 @@
   <!-- DASHBOARD -->
 
   <main>
+
+    <!-- DEVELOPMENT STATUS -->
+    <section class="development-notice" aria-labelledby="development-title">
+      <h2 id="development-title">🚧 Under Active Development</h2>
+      <p>
+        This portfolio dashboard is a work in progress. The Federal Register feed
+        is available for exploration, while additional agency integrations and
+        monitoring features are being developed. Always verify regulatory
+        requirements using official sources.
+      </p>
+    </section>
+
 
     <div class="toolbar">
       <div>
