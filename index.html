@@ -343,6 +343,69 @@
         padding: 18px;
       }
     }
+
+    /* Compact analyst workspace */
+    header { padding: 18px max(24px, calc((100vw - 1220px)/2)); }
+    .header-content { gap: 14px; }
+    .avatar { width: 56px; height: 56px; border-width: 2px; box-shadow: 0 0 12px rgba(84,216,255,.2); }
+    h1 { font-size: clamp(21px, 2.5vw, 30px); margin: 4px 0; }
+    .eyebrow { font-size: 10px; letter-spacing: 1.4px; }
+    .subtitle { font-size: 13px; }
+    main { max-width: 1260px; padding: 18px 20px 36px; }
+    .development-notice { display:flex; align-items:center; gap:12px; padding: 10px 14px; margin-bottom: 16px; border-left-width:3px; }
+    .development-notice h2 { font-size: 13px; margin:0; flex-shrink:0; }
+    .development-notice p { font-size: 12px; line-height:1.45; }
+    .toolbar { margin-bottom: 12px; gap: 10px; }
+    .toolbar h2 { font-size: 18px; margin: 0 0 3px; }
+    .toolbar p { font-size: 12px; }
+    .button { padding: 9px 13px; font-size: 12px; }
+    .stats { grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 14px; }
+    .stat { padding: 12px 14px; min-width:0; }
+    .stat-label { font-size: 10px; letter-spacing:.7px; }
+    .stat-value { font-size: 21px; margin: 5px 0 2px; overflow-wrap:anywhere; }
+    .stat-note { font-size: 11px; }
+    .workspace-controls { padding: 12px 14px; margin-bottom: 14px; }
+    .feed-controls { margin: 0 0 10px; gap: 7px; }
+    .filter { padding: 7px 10px; font-size: 12px; }
+    .search { padding: 9px 12px; font-size: 13px; }
+    .workspace { display:grid; grid-template-columns: minmax(0, 1.3fr) minmax(320px, 1fr); gap: 14px; align-items:start; }
+    .workspace .panel { min-width:0; padding: 16px; }
+    .panel-heading { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px; }
+    .panel-heading h2 { font-size: 17px; margin:0; }
+    .panel-hint { color:var(--muted); font-size:11px; margin:0 0 10px; }
+    .feed-item { padding: 13px 0; }
+    .feed-item h3 { font-size: 14px; line-height:1.4; margin:7px 0; }
+    .feed-item p { font-size: 12px; line-height:1.5; margin:7px 0; }
+    .tag { font-size: 10px; padding: 3px 7px; }
+    .meta { font-size: 11px !important; }
+    .feed-list { max-height: 590px; overflow-y:auto; scrollbar-color: var(--border) transparent; }
+    .timeline-list { display:grid; gap:8px; }
+    .timeline-entry { border:1px solid var(--border); border-radius:9px; background:#0c1525; overflow:hidden; }
+    .timeline-entry summary { cursor:pointer; list-style:none; display:flex; align-items:center; gap:10px; padding:11px; }
+    .timeline-entry summary::-webkit-details-marker { display:none; }
+    .timeline-entry summary::after { content:'⌄'; color:var(--cyan); margin-left:auto; font-size:17px; }
+    .timeline-entry[open] summary::after { content:'⌃'; }
+    .timeline-date { color:var(--cyan); min-width:58px; font-size:11px; font-weight:700; line-height:1.35; }
+    .timeline-title { min-width:0; font-size:12px; line-height:1.35; font-weight:600; }
+    .timeline-kind { display:block; color:var(--muted); font-size:10px; font-weight:400; margin-top:3px; }
+    .timeline-details { border-top:1px solid var(--border); padding:10px 12px; font-size:12px; line-height:1.6; color:var(--muted); }
+    .timeline-details p { margin:3px 0 8px; }
+    .timeline-actions { display:flex; align-items:center; justify-content:space-between; margin-top:10px; gap:8px; }
+    .subtle-button { border:1px solid var(--border); background:#15243b; color:var(--cyan); padding:7px 10px; border-radius:7px; font-size:12px; }
+    .subtle-button:hover { border-color:var(--cyan); }
+    .timeline-note { color:var(--muted); font-size:11px; line-height:1.5; margin:10px 0 0; }
+    .source-note { margin-top:14px; padding-top:12px; }
+    .source-links { gap:12px; }
+    .status { padding:14px 0; font-size:12px; }
+    @media (max-width: 900px) { .workspace { grid-template-columns:1fr; } .feed-list { max-height:460px; } }
+    @media (max-width: 600px) {
+      header { padding:14px 16px; } main { padding:14px 12px 28px; }
+      .avatar { width:44px; height:44px; } .subtitle { font-size:12px; }
+      .development-notice { display:block; } .development-notice h2 { margin-bottom:4px; }
+      .stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .workspace .panel { padding:12px; } .filter { flex: 1 1 auto; }
+      .feed-list { max-height:420px; }
+    }
   </style>
 </head>
 
@@ -448,139 +511,44 @@
 
     </div>
 
-    <!-- NEWS FEED -->
-
-    <section class="panel">
-
-      <h2>🪐 Latest Trade Developments</h2>
-
-      <p class="muted">
-        Search recent Federal Register publications
-        by regulatory topic.
-      </p>
-
+    <!-- SHARED CONTROLS -->
+    <section class="panel workspace-controls" aria-label="Shared regulatory filters">
       <div class="feed-controls" aria-label="Trade topic filters">
-
-        <button
-          class="filter active"
-          type="button"
-          data-topic="all"
-          aria-pressed="true"
-        >
-          All Updates
-        </button>
-
-        <button
-          class="filter"
-          type="button"
-          data-topic="tariffs"
-          aria-pressed="false"
-        >
-          Tariffs &amp; Trade Remedies
-        </button>
-
-        <button
-          class="filter"
-          type="button"
-          data-topic="customs"
-          aria-pressed="false"
-        >
-          Customs &amp; Imports
-        </button>
-
-        <button
-          class="filter"
-          type="button"
-          data-topic="sanctions"
-          aria-pressed="false"
-        >
-          Sanctions
-        </button>
-
-        <button
-          class="filter"
-          type="button"
-          data-topic="exports"
-          aria-pressed="false"
-        >
-          Export Controls
-        </button>
-
+        <button class="filter active" type="button" data-topic="all" aria-pressed="true">All Updates</button>
+        <button class="filter" type="button" data-topic="tariffs" aria-pressed="false">Tariffs &amp; Remedies</button>
+        <button class="filter" type="button" data-topic="customs" aria-pressed="false">Customs &amp; Imports</button>
+        <button class="filter" type="button" data-topic="sanctions" aria-pressed="false">Sanctions</button>
+        <button class="filter" type="button" data-topic="exports" aria-pressed="false">Export Controls</button>
       </div>
+      <label for="headline-search" class="muted" style="font-size:11px;display:block;margin-bottom:5px">Search feed and timeline</label>
+      <input id="headline-search" class="search" type="search" placeholder="Search titles, agencies, or summaries...">
+    </section>
 
-      <label for="headline-search" class="muted">
-        Search displayed headlines
-      </label>
+    <div class="workspace">
+      <section class="panel" aria-labelledby="feed-heading">
+        <div class="panel-heading"><h2 id="feed-heading">🪐 Latest Trade Developments</h2><span class="tag">Federal Register</span></div>
+        <p class="panel-hint">Recent publications matching your selected topic</p>
+        <div id="regulatory-feed" class="feed-list" aria-live="polite"><p class="status">📡 Scanning the regulatory universe...</p></div>
+      </section>
+      <section class="panel" aria-labelledby="timeline-heading">
+        <div class="panel-heading"><h2 id="timeline-heading">🗓️ Regulatory Timeline</h2><span class="tag" id="timeline-count">— events</span></div>
+        <p class="panel-hint">Publication and listed milestone dates · select to expand</p>
+        <div id="regulatory-timeline" class="timeline-list" aria-live="polite"><p class="status">Loading timeline...</p></div>
+        <div class="timeline-actions"><span id="timeline-range" class="panel-hint" style="margin:0">Showing recent milestones</span><button id="timeline-more" type="button" class="subtle-button" hidden>Show more</button></div>
+        <p class="timeline-note">Dates are drawn from returned Federal Register records. Not a comprehensive deadline calendar; verify each official notice.</p>
+      </section>
+    </div>
 
-      <input
-        id="headline-search"
-        class="search"
-        type="search"
-        placeholder="Search titles, agencies, or summaries..."
-      >
-
-      <div id="regulatory-feed" aria-live="polite">
-        <p class="status">
-          📡 Scanning the regulatory universe...
-        </p>
+    <section class="source-note" aria-label="Sources and limitations">
+      Federal Register API keyword results are for research only. Inclusion does not establish applicability, legal effect, or a compliance obligation. Verify requirements and dates against official publications.
+      <div class="source-links">
+        <a href="https://www.federalregister.gov/" target="_blank" rel="noopener noreferrer">Federal Register</a>
+        <a href="https://www.cbp.gov/" target="_blank" rel="noopener noreferrer">CBP</a>
+        <a href="https://www.bis.gov/" target="_blank" rel="noopener noreferrer">BIS</a>
+        <a href="https://ofac.treasury.gov/" target="_blank" rel="noopener noreferrer">OFAC</a>
+        <a href="https://ustr.gov/" target="_blank" rel="noopener noreferrer">USTR</a>
       </div>
-
-      <div class="source-note">
-        Federal Register API.
-        Documents are selected through keyword searches.
-        Inclusion does not establish regulatory applicability,
-        legal effect, or a compliance obligation.
-        Verify requirements against official publications
-        and effective dates.
-
-        <div class="source-links">
-          <a
-            href="https://www.federalregister.gov/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Federal Register
-          </a>
-
-          <a
-            href="https://www.cbp.gov/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            CBP
-          </a>
-
-          <a
-            href="https://www.bis.gov/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            BIS
-          </a>
-
-          <a
-            href="https://ofac.treasury.gov/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            OFAC
-          </a>
-
-          <a
-            href="https://ustr.gov/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            USTR
-          </a>
-        </div>
-
-        <p>
-          CBP, BIS, OFAC, and USTR links are reference resources,
-          not additional live feeds.
-        </p>
-      </div>
-
+      <p>CBP, BIS, OFAC, and USTR links are reference resources, not additional live feeds.</p>
     </section>
 
   </main>
@@ -593,245 +561,206 @@
   <!-- LIVE FEDERAL REGISTER CONNECTION -->
 
   <script>
-    const API_BASE =
-      "https://www.federalregister.gov/api/v1/documents.json";
-
+    const API_BASE = "https://www.federalregister.gov/api/v1/documents.json";
     const TOPICS = {
-      all:
-        'customs OR tariff OR sanctions OR "export controls"',
-      tariffs:
-        'tariff OR "trade remedies" OR "antidumping"',
-      customs:
-        'customs OR "import duties" OR "country of origin"',
-      sanctions:
-        'sanctions OR "blocked persons"',
-      exports:
-        '"export controls" OR "Export Administration Regulations"'
+      all: 'customs OR tariff OR sanctions OR "export controls"',
+      tariffs: 'tariff OR "trade remedies" OR "antidumping"',
+      customs: 'customs OR "import duties" OR "country of origin"',
+      sanctions: 'sanctions OR "blocked persons"',
+      exports: '"export controls" OR "Export Administration Regulations"'
     };
-
     const feed = document.getElementById("regulatory-feed");
+    const timeline = document.getElementById("regulatory-timeline");
     const count = document.getElementById("document-count");
+    const timelineCount = document.getElementById("timeline-count");
+    const timelineMore = document.getElementById("timeline-more");
+    const timelineRange = document.getElementById("timeline-range");
     const status = document.getElementById("feed-status");
     const checked = document.getElementById("last-checked");
     const refresh = document.getElementById("refresh-button");
     const search = document.getElementById("headline-search");
     const filters = document.querySelectorAll(".filter");
-
     let activeTopic = "all";
     let currentDocuments = [];
     let requestController = null;
     let requestNumber = 0;
+    let timelineExpanded = false;
 
-    function setStatus(message, detail) {
-      status.textContent = message;
-      checked.textContent = detail;
+    function messageIn(target, message) {
+      target.replaceChildren();
+      const p = document.createElement("p");
+      p.className = "status";
+      p.textContent = message;
+      target.appendChild(p);
     }
-
-    function showMessage(message) {
-      feed.replaceChildren();
-
-      const paragraph = document.createElement("p");
-      paragraph.className = "status";
-      paragraph.textContent = message;
-
-      feed.appendChild(paragraph);
+    function cleanText(value) {
+      return String(value || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
     }
-
-    function renderDocuments() {
-      const query = search.value.trim().toLowerCase();
-
-      const matching = currentDocuments.filter(function(doc) {
-        const agencyNames = (doc.agencies || [])
-          .map(function(agency) {
-            return agency.name || "";
-          })
-          .join(" ");
-
-        const text = [
-          doc.title || "",
-          agencyNames,
-          doc.abstract || ""
-        ].join(" ").toLowerCase();
-
-        return text.includes(query);
-      });
-
+    function agencyNames(doc) {
+      return (doc.agencies || []).map(a => a.name || "").filter(Boolean).join(", ");
+    }
+    function officialUrl(doc) {
+      const url = doc.html_url || "";
+      return /^https:\/\/www\.federalregister\.gov\//.test(url) ? url : "https://www.federalregister.gov/";
+    }
+    function dateLabel(value) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(value || "")) return value || "Date unavailable";
+      const parts = value.split("-");
+      return new Date(Date.UTC(+parts[0], +parts[1]-1, +parts[2])).toLocaleDateString("en-US", {month:"short", day:"numeric", timeZone:"UTC"});
+    }
+    function matchingDocuments() {
+      const q = search.value.trim().toLowerCase();
+      return currentDocuments.filter(doc => [doc.title, agencyNames(doc), cleanText(doc.abstract)].join(" ").toLowerCase().includes(q));
+    }
+    function renderFeed(docs) {
       feed.replaceChildren();
-      count.textContent = matching.length;
-
-      if (matching.length === 0) {
-        showMessage("No documents match your current search.");
-        return;
-      }
-
-      matching.forEach(function(doc) {
+      if (!docs.length) { messageIn(feed, "No documents match your search."); return; }
+      docs.forEach(doc => {
         const article = document.createElement("article");
         article.className = "feed-item";
-
         const tag = document.createElement("span");
         tag.className = "tag";
         tag.textContent = doc.type || "Federal Register";
-
         const heading = document.createElement("h3");
         const link = document.createElement("a");
-
-        link.textContent = doc.title || "Untitled document";
-        link.href =
-          doc.html_url || "https://www.federalregister.gov/";
+        link.href = officialUrl(doc);
         link.target = "_blank";
         link.rel = "noopener noreferrer";
-
+        link.textContent = doc.title || "Untitled document";
         heading.appendChild(link);
-
-        const agencies = (doc.agencies || [])
-          .map(function(agency) {
-            return agency.name;
-          })
-          .filter(Boolean)
-          .join(", ");
-
-        const metadata = document.createElement("p");
-        metadata.className = "meta";
-        metadata.textContent =
-          "Published: " +
-          (doc.publication_date || "Unknown") +
-          " | Agency: " +
-          (agencies || "Not specified");
-
-        article.append(tag, heading, metadata);
-
-        
-if (doc.abstract) {
-  const summary = document.createElement("p");
-
-  const plainText = doc.abstract
-    .replace(/<[^>]*>/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-
-  const words = plainText.split(" ");
-  const maxWords = 45;
-
-  summary.textContent =
-    words.length > maxWords
-      ? words.slice(0, maxWords).join(" ") + "..."
-      : plainText;
-
-  article.appendChild(summary);
-
-  const readMore = document.createElement("a");
-  readMore.href =
-    doc.html_url || "https://www.federalregister.gov/";
-  readMore.target = "_blank";
-  readMore.rel = "noopener noreferrer";
-  readMore.textContent = "Read official notice";
-
-  article.appendChild(readMore);
-}
-
-
+        const meta = document.createElement("p");
+        meta.className = "meta";
+        meta.textContent = "Published: " + (doc.publication_date || "Not listed") + " · " + (agencyNames(doc) || "Agency not listed");
+        article.append(tag, heading, meta);
+        if (doc.abstract) {
+          const summary = document.createElement("p");
+          const words = cleanText(doc.abstract).split(" ");
+          summary.textContent = words.slice(0, 28).join(" ") + (words.length > 28 ? "…" : "");
+          article.appendChild(summary);
+        }
         feed.appendChild(article);
       });
     }
-
+    function timelineEvents(docs) {
+      const events = [];
+      docs.forEach(doc => {
+        const milestones = [
+          ["publication_date", "Publication"],
+          ["effective_on", "Effective date"],
+          ["comments_close_on", "Comment deadline"]
+        ];
+        milestones.forEach(([field, label]) => {
+          if (/^\d{4}-\d{2}-\d{2}$/.test(doc[field] || "")) {
+            events.push({date:doc[field], label, doc});
+          }
+        });
+      });
+      events.sort((a,b) => b.date.localeCompare(a.date) || a.label.localeCompare(b.label));
+      return events;
+    }
+    function renderTimeline(docs) {
+      const events = timelineEvents(docs);
+      timeline.replaceChildren();
+      timelineCount.textContent = events.length + (events.length === 1 ? " event" : " events");
+      const visible = timelineExpanded ? events : events.slice(0, 5);
+      timelineRange.textContent = events.length ? "Showing " + visible.length + " of " + events.length : "No milestones";
+      timelineMore.hidden = events.length <= 5;
+      timelineMore.textContent = timelineExpanded ? "Show less" : "Show more";
+      if (!events.length) { messageIn(timeline, "No dated milestones match this search."); return; }
+      visible.forEach(event => {
+        const details = document.createElement("details");
+        details.className = "timeline-entry";
+        const summary = document.createElement("summary");
+        const date = document.createElement("span");
+        date.className = "timeline-date";
+        date.textContent = dateLabel(event.date);
+        const heading = document.createElement("span");
+        heading.className = "timeline-title";
+        heading.textContent = event.doc.title || "Untitled document";
+        const kind = document.createElement("span");
+        kind.className = "timeline-kind";
+        kind.textContent = event.label + " · " + event.date;
+        heading.appendChild(kind);
+        summary.append(date, heading);
+        const body = document.createElement("div");
+        body.className = "timeline-details";
+        const agency = document.createElement("p");
+        agency.textContent = "Agency: " + (agencyNames(event.doc) || "Not listed");
+        const dates = document.createElement("p");
+        dates.textContent = "Published: " + (event.doc.publication_date || "Not listed") + " · Effective: " + (event.doc.effective_on || "Not listed") + " · Comments close: " + (event.doc.comments_close_on || "Not listed");
+        const link = document.createElement("a");
+        link.href = officialUrl(event.doc);
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Read official notice";
+        body.append(agency, dates, link);
+        details.append(summary, body);
+        timeline.appendChild(details);
+      });
+    }
+    function renderDocuments() {
+      const docs = matchingDocuments();
+      count.textContent = docs.length;
+      renderFeed(docs);
+      renderTimeline(docs);
+    }
     async function loadFeed() {
       requestNumber += 1;
       const thisRequest = requestNumber;
-
-      if (requestController) {
-        requestController.abort();
-      }
-
-      requestController = new AbortController();
-
+      if (requestController) requestController.abort();
+      const controller = new AbortController();
+      requestController = controller;
       refresh.disabled = true;
       currentDocuments = [];
       count.textContent = "—";
-
-      setStatus("Connecting", "Requesting official publications");
-      showMessage("📡 Scanning the regulatory universe...");
-
-      const params = new URLSearchParams({
-        "conditions[term]": TOPICS[activeTopic],
-        "order": "newest",
-        "per_page": "10"
-      });
-
-      const url = API_BASE + "?" + params.toString();
-
-      const timeout = setTimeout(function() {
-        requestController.abort();
-      }, 15000);
-
+      timelineCount.textContent = "— events";
+      status.textContent = "Connecting";
+      checked.textContent = "Requesting official publications";
+      messageIn(feed, "📡 Scanning the regulatory universe...");
+      messageIn(timeline, "Loading timeline...");
+      const params = new URLSearchParams({"conditions[term]":TOPICS[activeTopic], "order":"newest", "per_page":"10"});
+      // Explicit fields keep optional regulatory milestone dates available when the API provides them.
+      ["title","type","abstract","html_url","publication_date","agencies","effective_on","comments_close_on"].forEach(field => params.append("fields[]", field));
+      const timeout = setTimeout(() => controller.abort(), 15000);
       try {
-        const response = await fetch(url, {
-          signal: requestController.signal
-        });
-
-        if (!response.ok) {
-          throw new Error("HTTP " + response.status);
-        }
-
+        const response = await fetch(API_BASE + "?" + params, {signal:controller.signal});
+        if (!response.ok) throw new Error("HTTP " + response.status);
         const data = await response.json();
-
-        if (thisRequest !== requestNumber) {
-          return;
-        }
-
-        currentDocuments = data.results || [];
-
-        setStatus(
-          "Connected",
-          "Checked " + new Date().toLocaleString()
-        );
-
+        if (thisRequest !== requestNumber) return;
+        currentDocuments = Array.isArray(data.results) ? data.results : [];
+        status.textContent = "Connected";
+        checked.textContent = "Checked " + new Date().toLocaleString();
+        timelineExpanded = false;
         renderDocuments();
-
       } catch (error) {
-        if (thisRequest !== requestNumber) {
-          return;
-        }
-
+        if (thisRequest !== requestNumber) return;
         console.error("Federal Register feed:", error);
-
-        setStatus("Unavailable", "Unable to retrieve documents");
+        status.textContent = "Unavailable";
+        checked.textContent = "Unable to retrieve documents";
         count.textContent = "—";
-
-        showMessage(
-          "⚠️ The Federal Register feed is unavailable. " +
-          "Please try refreshing."
-        );
-
+        messageIn(feed, "⚠️ Federal Register feed unavailable. Please refresh.");
+        messageIn(timeline, "Timeline unavailable until the feed reconnects.");
+        timelineCount.textContent = "— events";
+        timelineMore.hidden = true;
       } finally {
         clearTimeout(timeout);
-
-        if (thisRequest === requestNumber) {
-          refresh.disabled = false;
-        }
+        if (thisRequest === requestNumber) refresh.disabled = false;
       }
     }
-
-    filters.forEach(function(button) {
-      button.addEventListener("click", function() {
-        activeTopic = button.dataset.topic;
-
-        filters.forEach(function(other) {
-          const selected = other === button;
-          other.classList.toggle("active", selected);
-          other.setAttribute(
-            "aria-pressed",
-            String(selected)
-          );
-        });
-
-        search.value = "";
-        loadFeed();
+    filters.forEach(button => button.addEventListener("click", () => {
+      activeTopic = button.dataset.topic;
+      filters.forEach(other => {
+        const selected = other === button;
+        other.classList.toggle("active", selected);
+        other.setAttribute("aria-pressed", String(selected));
       });
-    });
-
-    search.addEventListener("input", renderDocuments);
+      search.value = "";
+      timelineExpanded = false;
+      loadFeed();
+    }));
+    search.addEventListener("input", () => { timelineExpanded = false; if (status.textContent === "Connected") renderDocuments(); });
+    timelineMore.addEventListener("click", () => { timelineExpanded = !timelineExpanded; renderTimeline(matchingDocuments()); });
     refresh.addEventListener("click", loadFeed);
-
     loadFeed();
   </script>
 
